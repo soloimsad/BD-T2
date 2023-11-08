@@ -13,11 +13,18 @@
        
             <ul>
                 <li><a href="home">Minuta</a></li>
-                <li><a href="home">Minuta</a></li>
-                <li><a href="home">Minuta</a></li>
+                <li><a href="home">Favoritos</a></li>
+                
+                <li><form onsubmit="event.preventDefault();" role="search">
+                    <label for="search"></label>
+                    <input type="search" placeholder="Nombre almuerzo" id="search-bar" autofocus required />
+                    <button type="submit">Search</button>
+                </form>
+               
+            </li>
             </ul>
        
-            <img src="img/user.png" class="user-pic" onclick="toggleMenu()">
+            <img src="img/llama.jpeg" class="user-pic" onclick="toggleMenu()">
         
             <div class="sub-menu-wrap" id="subMenu">
                 <div class="sub-menu">
@@ -30,18 +37,18 @@
                     <hr>
                     <a href="#" class="sub-menu-link">
                         <img src="img/profile.png"  >
-                        <p>Editar Perfil</p>
+                        <p>Ver Perfil</p>
                         <span>></span>
                     
                     </a>
                     <a href="#" class="sub-menu-link">
                         <img src="img/favorito.png">
-                        <p>Favoritos</p>
+                        <p>Mis Favoritos</p>
                         <span>></span>
                     
                     </a>
 
-                    <a href="#" class="sub-menu-link">
+                    <a href="logout.php" class="sub-menu-link">
                         <img src="img/logout.png">
                         <p>Cerrar Sesi&oacute;n</p>
                         <span>></span>
@@ -51,6 +58,7 @@
                 </div>    
             </div>
         </nav>
+
 
     </div>
 

@@ -12,10 +12,6 @@
     <title>Minuta USM</title>
 </head>
 <body>
-    <form action = "" method = "get">
-        <input type ="text" name= "busqueda"> <br>
-        <input type ="submit" name= "enviar" value ="Buscar">
-    </form>
     
     <br><br>
     <?php 
