@@ -136,3 +136,11 @@ form {
     margin-left: 180px ;
  
 }
+.receta-imagen {
+    width: 200px;
+    height: 150px;
+  }
+
+.favoritos-form {
+    text-align: right;
+}
