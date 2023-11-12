@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include "basic.html";
     $correo = $_POST['correo'];
     $password = $_POST['password'];
-    $sql = "SELECT correo, password, nombre FROM usuario WHERE correo = ?";
+    $sql = "SELECT id, correo, password, nombre FROM usuario WHERE correo = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $correo);
     $stmt->execute();
@@ -19,6 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             session_start();
             $_SESSION['correo'] = $correo;
             $_SESSION['nombre'] = $row['nombre'];
+            $_SESSION['id_usuario'] = $row['id'];
             header("Location: welcome"); 
            
         } 

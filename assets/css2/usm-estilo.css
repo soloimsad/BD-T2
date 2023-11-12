@@ -1204,3 +1204,8 @@ h4 {
 .fixed-p{
     padding-left: 15px;
 }
+
+.user-name {
+  color: #ff0000; /* Cambia #ff0000 al código de color que desees */
+}
+
