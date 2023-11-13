@@ -1,6 +1,7 @@
 <?php
     
     include "basic.html";
+    include 'index.php';
 ?>
 
 <!DOCTYPE html>

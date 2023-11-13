@@ -2,6 +2,7 @@
 session_start();
 include 'connection.php';
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['id_usuario'])) {
     $idUsuario = $_SESSION['id_usuario'];
     $idReceta = $_POST['id_receta'];

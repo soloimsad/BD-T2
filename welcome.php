@@ -2,6 +2,8 @@
     session_start();
     include 'basic.html'; 
     include 'connection.php';
+    include 'index.php';
+   
  
 ?>
 

@@ -1,6 +1,7 @@
 <?php
     include("connection.php");
     include "basic.html";
+    
 ?>
 
 <!DOCTYPE html>
