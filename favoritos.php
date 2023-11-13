@@ -2,7 +2,6 @@
 session_start();
 include 'connection.php';
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['id_usuario'])) {
     $idUsuario = $_SESSION['id_usuario'];
     $idReceta = $_POST['id_receta'];
@@ -19,10 +18,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['id_usuario'])) {
             window.history.back();
             </script>";
     } else {
-        echo "La receta ya está en favoritos.";
+        echo "<script>
+        alert('La receta ya esta en favoritos');
+        window.history.back();
+        </script>";
     }
 } else {
-    echo "Error al agregar la receta a favoritos.";
+    echo "<script>
+    alert('Error al agregar la receta a favoritos');
+    window.history.back();
+    </script>";
 }
 
 $conn->close();

@@ -1,7 +1,7 @@
 <?php
     
     include "basic.html";
-    include 'index.php';
+    //include 'index.php';
 ?>
 
 <!DOCTYPE html>

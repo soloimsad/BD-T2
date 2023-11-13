@@ -2,7 +2,7 @@
     session_start();
     include 'basic.html'; 
     include 'connection.php';
-    include 'index.php';
+    //include 'index.php';
    
  
 ?>
@@ -22,7 +22,7 @@
             <ul>
                 <li><a href="#">Minuta</a></li>
                 <li><a href="#">Top</a></li>
-                <li><a href="#">Reseñas</a></li>
+                <li><a href="welcome?favoritos">Favoritos</a></li>
                 
                 
                 <li><form action="welcome" method="get">
@@ -99,9 +99,12 @@
             // Verificar si la variable de sesión está definida
             if (isset($_SESSION['id_usuario'])) {
                 $idUsuario = $_SESSION['id_usuario'];
-                $consultaFavoritos = $conn->query("SELECT r.* FROM recetas r 
-                                           INNER JOIN favoritos f ON r.id_receta = f.id_receta 
-                                           WHERE f.id_usuario = $idUsuario");
+                $consultaFavoritos = $conn->query("SELECT r.*, f.id_usuario, ROUND(AVG(c.calificacion), 2) AS calificacion_promedio
+                                                    FROM recetas r
+                                                    LEFT JOIN favoritos f ON r.id_receta = f.id_receta
+                                                    LEFT JOIN calificaciones c ON r.id_receta = c.id_receta
+                                                    WHERE f.id_usuario = $idUsuario
+                                                    GROUP BY r.id_receta;");
 
                 while ($favorito = $consultaFavoritos->fetch_array()) {
                     echo '<div class="receta">';
@@ -111,11 +114,17 @@
              
                     echo '<img src="' . $favorito['url_foto'] . '" alt="' . $favorito['nombre'] . '" style="width: 200px; height: 150px;">';
 
-                    // Otros detalles de la receta (puedes ajustar esto según tus necesidades)
-                    echo '<p>Tipo de Platillo: ' . $favorito['tipo_platillo'] . '</p>';
-                    echo '<p>Tiempo de Preparación: ' . $favorito['tiempo_preparacion'] . '</p>';
-                    echo '<p>Instrucciones: ' . $favorito['instrucciones'] . '</p>';
-                    
+                    echo '<form action="welcome" method="get">';
+                    echo '<input type="hidden" name="ver_receta" value="' . $favorito['id_receta'] . '">';
+                    echo '<input type="submit" value="Ver receta">';
+                    echo '</form>';
+
+                    if ($favorito['calificacion_promedio'] !== null) {
+                        echo '<p>Calificación Promedio: ' . $favorito['calificacion_promedio'] . '</p>';
+                    } else {
+                        echo '<p>Aún no hay calificación para esta receta.</p>';
+                    }
+                   
                     echo '</div>';
                 }
             } else {
@@ -147,7 +156,7 @@
             echo '</form>';
 
             if ($receta['calificacion'] !== null) {
-                echo '<p>Calificación: ' . $receta['calificacion'] . '</p>';
+                echo '<p>Tu Calificación: ' . $receta['calificacion'] . '</p>';
             } else {
                 echo '<p>Aún no hay calificación para esta receta.</p>';
             }
@@ -157,6 +166,11 @@
             echo '<label for="calificacion">Calificación (1-5):</label>';
             echo '<input type="number" name="calificacion" min="1" max="5" required>';
             echo '<input type="submit" value="Calificar">';
+            echo '</form>';
+
+            echo '<form action="calificar" method="GET">';
+            echo '<input type="hidden" name="delete" value="'.$receta['id_receta'].'">';
+            echo '<button type="submit">Eliminar Calificación</button>';
             echo '</form>';
 
             echo '</div>';
