@@ -144,3 +144,12 @@ form {
 .favoritos-form {
     text-align: right;
 }
+
+h2 {
+    font-family: Arial, sans-serif; /* Cambia la fuente según tus preferencias */
+    font-weight: normal; /* Ajusta el peso de la fuente según tus preferencias */
+}
+
+strong {
+    font-weight: bold; /* Esto establece el texto en negrita */
+}

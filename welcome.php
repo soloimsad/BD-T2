@@ -18,8 +18,10 @@
             <img src="img/favicon.ico" class="logo">
        
             <ul>
-                <li><a href="home">Minuta</a></li>
-                <li><a href="welcome?favoritos">Favoritos</a></li>
+                <li><a href="#">Minuta</a></li>
+                <li><a href="#">Top</a></li>
+                <li><a href="#">Reseñas</a></li>
+                
                 
                 <li><form action="welcome" method="get">
                     <input type="text" name="barra" >
@@ -27,10 +29,10 @@
                    
                 </form></li>
                
-            </li>
+            
             </ul>
 
-            <span class="user-name" style="color: #FFFFFF;"><?php echo $_SESSION['nombre']; ?></span>
+            
             <img src="img/llama2.gif" class="user-pic" onclick="toggleMenu()">
             
 
@@ -38,9 +40,8 @@
                 <div class="sub-menu">
                     <div class="uer-info">
 
-                        <img src="img/user.png" width="50" height="50">
-                        <h2></h2>
-
+                        <img src="img/llama2.gif" width="50" height="50">
+                        <h2><strong><?php echo $_SESSION['nombre']; ?></h3>
                     </div>
                     <hr>
                     <a href="#" class="sub-menu-link">
@@ -79,12 +80,8 @@
                 echo '<div class="receta">';
                 echo '<h3>' . $row['nombre'] . '</h3>';
                 
-                // Mostrar la imagen de la receta
                 echo '<img src="' . $row['url_foto'] . '" alt="' . $row['nombre'] . '" style="width: 200px; height: 150px;">';
 
-        
-                // Otros detalles de la receta (puedes ajustar esto según tus necesidades)
-              
                 echo '<form action="welcome" method="get">';
                 echo '<input type="hidden" name="ver_receta" value="' . $row['id_receta'] . '">';
                 echo '<input type="submit" value="Ver receta">';
